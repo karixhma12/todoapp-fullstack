@@ -1,6 +1,7 @@
 import {useState} from "react";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import "../styles.css";
 
 function Signup(){
 
@@ -16,11 +17,15 @@ function Signup(){
     }
 
     return (
-        <div>
+        <div className="container">
+            <h2> Signup </h2>
             <input type="text" placeholder="enter your username" value={username} onChange={(e)=>{setUsername(e.target.value)}} ></input>
             <input type="text" placeholder="enter your email-id" value={email} onChange={(e)=>{setEmail(e.target.value)}} ></input>
             <input type="text" placeholder="enter your password" value={password} onChange={(e)=>{setPassword(e.target.value)}} ></input>
-            <button onClick={()=>{submitform()}}> Submit </button>
+            <button onClick={()=>{submitform()}} className="primary"> Sign Up </button>
+            <div className="link"> 
+                Already have an account? <a href = "/login"> Login </a>
+            </div>
         </div>
     )
 }

@@ -1,6 +1,7 @@
 import {useState,useEffect} from "react";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import "../styles.css";
 
 function Todos(){
 
@@ -40,15 +41,20 @@ function Todos(){
     }
 
     return(
-        <div>
-            <input type="text" placeholder="type your todo..." value={todo} onChange={(e)=>setTodo(e.target.value)}></input>
-            <button onClick={()=>addTodo()}> Add todo </button>
+        <div className="container">
+            <h2> My Todos </h2>
+            <div className="todo-input-row">
+                <input type="text" placeholder="type your todo..." value={todo} onChange={(e)=>setTodo(e.target.value)}></input>
+                <button onClick={()=>addTodo()}> Add todo </button>
+            </div>
             <div>
                 {todos.map((todo)=>{
-                    return <div key={todo._id} style={{textDecoration: todo.done ? "line-through" : "none"}}>
-                        {todo.title}
-                        <button onClick={()=>markAsDone(todo._id)}> Mark as done </button>
-                        <button onClick={()=>deleteTodo(todo._id)}> Delete </button>
+                    return <div className="todo-item" key={todo._id} style={{textDecoration: todo.done ? "line-through" : "none"}}>
+                        <span className="todo-title"> {todo.title} </span>
+                        <div className="todo-actions">
+                            <button className="btn-done" onClick={()=>markAsDone(todo._id)}> Mark as done </button>
+                            <button className="btn-delete" onClick={()=>deleteTodo(todo._id)}> Delete </button>
+                        </div>    
                     </div>
                 })}
             </div>
