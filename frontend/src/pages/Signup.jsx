@@ -11,7 +11,7 @@ function Signup(){
     const navigate = useNavigate();
 
     async function submitform(){
-        await axios.post("http://localhost:3000/api/auth/signup",{username,email,password})
+        await axios.post(import.meta.env.VITE_BACKEND_URL + "/api/auth/signup",{username,email,password})
         console.log("form submitted to backend");
         navigate("/login");
     }

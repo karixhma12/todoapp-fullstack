@@ -10,7 +10,7 @@ function Login(){
     const navigate = useNavigate();
 
     async function submitform(){
-        const response = await axios.post("http://localhost:3000/api/auth/login",{email,password});
+        const response = await axios.post(import.meta.env.VITE_BACKEND_URL + "/api/auth/login",{email,password});
         console.log("login form submitted!");
         localStorage.setItem("token",response.data.token);
         navigate("/todos");

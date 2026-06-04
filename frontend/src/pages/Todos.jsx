@@ -19,24 +19,24 @@ function Todos(){
 
     useEffect(()=>{
         async function fetchTodos(){
-            let response = await axios.get("http://localhost:3000/api/todo/todos",{headers:{authorization : "Bearer " + localStorage.getItem("token")}});
+            let response = await axios.get(import.meta.env.VITE_BACKEND_URL + "/api/todo/todos",{headers:{authorization : "Bearer " + localStorage.getItem("token")}});
             setTodos(response.data.todos);
         }
         fetchTodos();
     },[refresh])
 
     async function addTodo(){
-        await axios.post("http://localhost:3000/api/todo/addtodo",{title:todo},{headers : {authorization : "Bearer " + localStorage.getItem("token")}});
+        await axios.post(import.meta.env.VITE_BACKEND_URL + "/api/todo/addtodo",{title:todo},{headers : {authorization : "Bearer " + localStorage.getItem("token")}});
         setRefresh(!refresh);
     }
 
     async function markAsDone(id){
-        await axios.put("http://localhost:3000/api/todo/updatetodo/"+id,{},{headers : {authorization : "Bearer " + localStorage.getItem("token")}})
+        await axios.put(import.meta.env.VITE_BACKEND_URL + "/api/todo/updatetodo/"+id,{},{headers : {authorization : "Bearer " + localStorage.getItem("token")}})
         setRefresh(!refresh);
     }
 
     async function deleteTodo(id){
-        await axios.delete("http://localhost:3000/api/todo/deletetodo/"+id,{headers : {authorization : "Bearer " + localStorage.getItem("token")}});
+        await axios.delete(import.meta.env.VITE_BACKEND_URL + "/api/todo/deletetodo/"+id,{headers : {authorization : "Bearer " + localStorage.getItem("token")}});
         setRefresh(!refresh);
     }
 
