@@ -1,11 +1,20 @@
 import {useState,useEffect} from "react";
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 function Todos(){
 
     const [todo,setTodo] = useState("");
     const [todos,setTodos] = useState([]);
     const [refresh,setRefresh] = useState(false);
+    const navigate = useNavigate();
+
+    useEffect(()=>{
+        const token = localStorage.getItem("token");
+        if(!token){
+            navigate("/login");
+        }
+    },[]);
 
     useEffect(()=>{
         async function fetchTodos(){
